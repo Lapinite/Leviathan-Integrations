@@ -16,87 +16,59 @@
 
 ## Integration architecture
 
-<p align="center">
-  <img width="100%" src="assets/integration-flow.svg" alt="Animated Leviathan integration trust-boundary flow">
-</p>
+<p align="center"><img width="100%" src="assets/integration-flow.svg" alt="Animated Leviathan integration trust-boundary flow"></p>
 
-Every supported integration should make its authentication, permissions, configuration, supported versions, failure behavior and data boundaries explicit before it is treated as a public contract.
+<p align="center"><sub>Every public integration defines authentication, permissions, configuration, supported versions, failure behavior and data boundaries.</sub></p>
+
+## Public surface map
+
+<p align="center"><img width="100%" src="assets/surface-map.svg" alt="Animated Leviathan public integration surface map"></p>
+
+<p align="center"><sub>Minecraft, community, platform and commerce adapters stay behind explicit public contracts. Private infrastructure remains private.</sub></p>
 
 ## Commerce and reward boundaries
 
-<p align="center">
-  <img width="100%" src="assets/commerce-boundaries.svg" alt="Animated Leviathan payment, entitlement, cosmetics and LeviCoins integration flow">
-</p>
+<p align="center"><img width="100%" src="assets/commerce-boundaries.svg" alt="Animated Leviathan payment, entitlement, cosmetics and LeviCoins integration flow"></p>
 
-Website and mobile surfaces may initiate store and checkout experiences, while money movement remains inside an external payment-provider boundary. Leviathan should consume verified provider events and maintain its own order, entitlement, refund/revocation and audit state.
-
-Cosmetics and LeviCoins are platform state, not payment credentials. Cosmetics integrations should expose ownership and equipped-state contracts. LeviCoins should be represented through ledger events such as grants, spends and adjustments. Creator, referral and campaign rewards should attach to verified events and include anti-abuse controls.
-
-## Integration map
-
-<table width="100%">
-<tr>
-<td width="33%" valign="top"><strong>Minecraft</strong><br><sub>Plugin integrations · server events · compatibility adapters · public server interfaces</sub></td>
-<td width="33%" valign="top"><strong>Community & Messaging</strong><br><sub>Discord · notifications · supported event bridges · moderation-facing integrations</sub></td>
-<td width="33%" valign="top"><strong>Platform</strong><br><sub>Webhooks · public APIs · payment events · third-party services · lifecycle and permission boundaries</sub></td>
-</tr>
-</table>
+<p align="center"><sub>Payments remain inside the payment-provider boundary. Leviathan consumes verified events and maintains product entitlement, ledger and audit state.</sub></p>
 
 ## External service boundaries
 
-Supported integrations may connect to Microsoft, Xbox, Minecraft/Mojang platform services, Discord, payment providers, public webhooks, Minecraft servers and other third-party systems. Those platforms remain separate trust boundaries with their own authentication, permission, rate-limit, privacy and availability requirements.
+Microsoft, Xbox, Minecraft/Mojang, Discord, payment providers, webhooks and Minecraft servers remain separate trust boundaries with their own authentication, permission, rate-limit, privacy and availability requirements.
 
-Leviathan integrations should expose only the minimum public contract needed for supported behavior. They must not embed or publish third-party credentials, payment secrets, bypass entitlement/authentication controls, or leak private Leviathan infrastructure.
-
-## Scope
-
-Integration work may include:
-
-- Minecraft plugin integrations
-- Discord integrations
-- webhook producers and consumers
-- public API integrations
-- payment-provider event adapters
-- store/order/entitlement integrations
-- cosmetics ownership/equipped-state integrations
-- LeviCoins ledger and reward-event integrations
-- creator/referral attribution events
-- server event bridges
-- supported third-party service adapters
-- compatibility and lifecycle helpers
-
-Only integrations intentionally intended for public use should be published here.
-
-## Navigation
-
-- [Minecraft plugins](GUIDE.md#minecraft-plugins)
-- [Discord](GUIDE.md#discord)
-- [Webhooks](GUIDE.md#webhooks)
-- [Third-party services](GUIDE.md#third-party-services)
-- [Permissions](GUIDE.md#permissions)
-- [Authentication boundaries](GUIDE.md#authentication-boundaries)
-- [Lifecycle](GUIDE.md#lifecycle)
-- [Support](GUIDE.md#support)
-
-## Security boundaries
-
-Integrations must never contain real bot tokens, webhook credentials, payment-provider secrets, API secrets, private keys, database credentials, personal information, internal infrastructure addresses, or private administrative endpoints.
-
-Configuration examples should use placeholders or environment-variable names. Logging should avoid exposing secrets, payment data, access tokens or sensitive user data.
+Leviathan integrations expose only the minimum supported public contract. They must not embed third-party credentials, payment secrets, bypass entitlement or authentication controls, or leak private Leviathan infrastructure.
 
 ## Compatibility
 
-Compatibility information will be documented per integration as implementations become available. Planned integrations must not be represented as production-ready before they have been tested and intentionally released.
+Compatibility is documented per integration as implementations become available. Planned integrations are not represented as production-ready until tested and intentionally released.
+
+## Security boundaries
+
+Integrations must never contain real bot tokens, webhook credentials, payment-provider secrets, API secrets, private keys, database credentials, personal information, internal infrastructure addresses or private administrative endpoints.
+
+Configuration examples use placeholders or environment-variable names, and logs must avoid secrets, payment data, access tokens and sensitive user data.
+
+## Navigation
+
+<p align="center">
+<a href="GUIDE.md#minecraft-plugins"><strong>Minecraft</strong></a> ·
+<a href="GUIDE.md#discord"><strong>Discord</strong></a> ·
+<a href="GUIDE.md#webhooks"><strong>Webhooks</strong></a> ·
+<a href="GUIDE.md#permissions"><strong>Permissions</strong></a> ·
+<a href="GUIDE.md#authentication-boundaries"><strong>Authentication</strong></a> ·
+<a href="GUIDE.md#lifecycle"><strong>Lifecycle</strong></a> ·
+<a href="GUIDE.md#support"><strong>Support</strong></a>
+</p>
 
 ## Related repositories
 
-| Repository | Role |
-| --- | --- |
-| [Leviathan API Docs](https://github.com/Lapinite/Leviathan-API-Docs) | Public interface contracts |
-| [Leviathan SDK](https://github.com/Lapinite/Leviathan-SDK) | Developer helpers |
-| [Leviathan Examples](https://github.com/Lapinite/Leviathan-Examples) | Small integration examples |
-| [Leviathan Server Tools](https://github.com/Lapinite/Leviathan-Server-Tools) | Minecraft server tooling |
-| [Leviathan Docs](https://github.com/Lapinite/Leviathan-Docs) | Ecosystem documentation |
+<p align="center">
+<a href="https://github.com/Lapinite/Leviathan-API-Docs"><strong>API Docs</strong></a> ·
+<a href="https://github.com/Lapinite/Leviathan-SDK"><strong>SDK</strong></a> ·
+<a href="https://github.com/Lapinite/Leviathan-Examples"><strong>Examples</strong></a> ·
+<a href="https://github.com/Lapinite/Leviathan-Server-Tools"><strong>Server Tools</strong></a> ·
+<a href="https://github.com/Lapinite/Leviathan-Docs"><strong>Docs</strong></a>
+</p>
 
 ## License
 
