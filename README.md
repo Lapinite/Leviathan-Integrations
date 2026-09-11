@@ -14,6 +14,14 @@
 
 </div>
 
+## Integration architecture
+
+<p align="center">
+  <img width="100%" src="assets/integration-flow.svg" alt="Animated Leviathan integration trust-boundary flow">
+</p>
+
+Every supported integration should make its authentication, permissions, configuration, supported versions, failure behavior and data boundaries explicit before it is treated as a public contract.
+
 ## Integration map
 
 <table width="100%">
@@ -23,6 +31,12 @@
 <td width="33%" valign="top"><strong>Platform</strong><br><sub>Webhooks · public APIs · third-party services · lifecycle and permission boundaries</sub></td>
 </tr>
 </table>
+
+## External service boundaries
+
+Supported integrations may connect to Microsoft, Xbox, Minecraft/Mojang platform services, Discord, public webhooks, Minecraft servers and other third-party systems. Those platforms remain separate trust boundaries with their own authentication, permission, rate-limit, privacy and availability requirements.
+
+Leviathan integrations should expose only the minimum public contract needed for supported behavior. They must not embed or publish third-party credentials, bypass entitlement/authentication controls, or leak private Leviathan infrastructure.
 
 ## Scope
 
@@ -37,22 +51,6 @@ Integration work may include:
 - compatibility and lifecycle helpers
 
 Only integrations intentionally intended for public use should be published here.
-
-## Integration lifecycle
-
-```text
-External System
-      ↓
-Supported Adapter / Plugin / Webhook
-      ↓
-Permission + Authentication Boundary
-      ↓
-Public Leviathan Interface
-      ↓
-Documented Result / Event
-```
-
-Each integration should make its authentication, permissions, configuration, supported versions, failure behavior, and data boundaries clear.
 
 ## Navigation
 
