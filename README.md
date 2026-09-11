@@ -22,21 +22,31 @@
 
 Every supported integration should make its authentication, permissions, configuration, supported versions, failure behavior and data boundaries explicit before it is treated as a public contract.
 
+## Commerce and reward boundaries
+
+<p align="center">
+  <img width="100%" src="assets/commerce-boundaries.svg" alt="Animated Leviathan payment, entitlement, cosmetics and LeviCoins integration flow">
+</p>
+
+Website and mobile surfaces may initiate store and checkout experiences, while money movement remains inside an external payment-provider boundary. Leviathan should consume verified provider events and maintain its own order, entitlement, refund/revocation and audit state.
+
+Cosmetics and LeviCoins are platform state, not payment credentials. Cosmetics integrations should expose ownership and equipped-state contracts. LeviCoins should be represented through ledger events such as grants, spends and adjustments. Creator, referral and campaign rewards should attach to verified events and include anti-abuse controls.
+
 ## Integration map
 
 <table width="100%">
 <tr>
 <td width="33%" valign="top"><strong>Minecraft</strong><br><sub>Plugin integrations · server events · compatibility adapters · public server interfaces</sub></td>
 <td width="33%" valign="top"><strong>Community & Messaging</strong><br><sub>Discord · notifications · supported event bridges · moderation-facing integrations</sub></td>
-<td width="33%" valign="top"><strong>Platform</strong><br><sub>Webhooks · public APIs · third-party services · lifecycle and permission boundaries</sub></td>
+<td width="33%" valign="top"><strong>Platform</strong><br><sub>Webhooks · public APIs · payment events · third-party services · lifecycle and permission boundaries</sub></td>
 </tr>
 </table>
 
 ## External service boundaries
 
-Supported integrations may connect to Microsoft, Xbox, Minecraft/Mojang platform services, Discord, public webhooks, Minecraft servers and other third-party systems. Those platforms remain separate trust boundaries with their own authentication, permission, rate-limit, privacy and availability requirements.
+Supported integrations may connect to Microsoft, Xbox, Minecraft/Mojang platform services, Discord, payment providers, public webhooks, Minecraft servers and other third-party systems. Those platforms remain separate trust boundaries with their own authentication, permission, rate-limit, privacy and availability requirements.
 
-Leviathan integrations should expose only the minimum public contract needed for supported behavior. They must not embed or publish third-party credentials, bypass entitlement/authentication controls, or leak private Leviathan infrastructure.
+Leviathan integrations should expose only the minimum public contract needed for supported behavior. They must not embed or publish third-party credentials, payment secrets, bypass entitlement/authentication controls, or leak private Leviathan infrastructure.
 
 ## Scope
 
@@ -46,6 +56,11 @@ Integration work may include:
 - Discord integrations
 - webhook producers and consumers
 - public API integrations
+- payment-provider event adapters
+- store/order/entitlement integrations
+- cosmetics ownership/equipped-state integrations
+- LeviCoins ledger and reward-event integrations
+- creator/referral attribution events
 - server event bridges
 - supported third-party service adapters
 - compatibility and lifecycle helpers
@@ -65,9 +80,9 @@ Only integrations intentionally intended for public use should be published here
 
 ## Security boundaries
 
-Integrations must never contain real bot tokens, webhook credentials, API secrets, private keys, database credentials, personal information, internal infrastructure addresses, or private administrative endpoints.
+Integrations must never contain real bot tokens, webhook credentials, payment-provider secrets, API secrets, private keys, database credentials, personal information, internal infrastructure addresses, or private administrative endpoints.
 
-Configuration examples should use placeholders or environment-variable names. Logging should avoid exposing secrets or sensitive user data.
+Configuration examples should use placeholders or environment-variable names. Logging should avoid exposing secrets, payment data, access tokens or sensitive user data.
 
 ## Compatibility
 
